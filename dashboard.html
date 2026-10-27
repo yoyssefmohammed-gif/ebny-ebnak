@@ -1,0 +1,1535 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, nofollow">
+
+    <title>لوحة تحكم المدرس | ابني ابنك</title>
+
+    <style>
+        :root {
+            --gold: #d4af37;
+            --gold-light: #f5d783;
+            --black: #080808;
+            --panel: #151515;
+            --border: #705621;
+            --danger: #c0392b;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            display: none;
+            margin: 0;
+            min-height: 100vh;
+            font-family: Tahoma, Arial, sans-serif;
+            color: white;
+
+            background:
+                linear-gradient(
+                    90deg,
+                    rgba(0, 0, 0, .30),
+                    rgba(0, 0, 0, .72) 38%,
+                    rgba(0, 0, 0, .90)
+                ),
+                url("../youssef2.jpg.jpg") center center / cover fixed no-repeat;
+
+            background-color: var(--black);
+        }
+
+        /* ================= HEADER ================= */
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 18px;
+            flex-wrap: wrap;
+
+            padding: 14px 4%;
+
+            background: rgba(5, 5, 5, .94);
+            border-bottom: 2px solid var(--gold);
+        }
+
+        /* إطار اسم المنصة والمدرس */
+
+        .brand-frame {
+            position: relative;
+            display: inline-block;
+            min-width: 250px;
+            padding: 15px 28px;
+            text-align: center;
+
+            background:
+                linear-gradient(
+                    145deg,
+                    rgba(10, 10, 10, .98),
+                    rgba(38, 29, 10, .96)
+                );
+
+            border: 1px solid var(--gold);
+            border-radius: 13px;
+
+            box-shadow:
+                0 0 0 4px rgba(212, 175, 55, .08),
+                0 5px 22px rgba(0, 0, 0, .5);
+        }
+
+        .brand-frame::before,
+        .brand-frame::after {
+            content: "";
+            position: absolute;
+            left: 22px;
+            right: 22px;
+            height: 2px;
+
+            background: linear-gradient(
+                90deg,
+                transparent,
+                var(--gold),
+                var(--gold-light),
+                var(--gold),
+                transparent
+            );
+        }
+
+        .brand-frame::before {
+            top: 5px;
+        }
+
+        .brand-frame::after {
+            bottom: 5px;
+        }
+
+        .brand-frame h1 {
+            margin: 0 0 7px;
+            color: var(--gold-light);
+            font-size: clamp(24px, 3vw, 32px);
+            text-shadow: 0 0 12px rgba(212, 175, 55, .25);
+        }
+
+        .brand-frame p {
+            margin: 0;
+            color: white;
+            font-size: 14px;
+            line-height: 1.8;
+        }
+
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        /* ================= BUTTONS ================= */
+
+        .button {
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            gap: 7px;
+
+            min-height: 43px;
+            padding: 10px 16px;
+
+            background: linear-gradient(
+                135deg,
+                var(--gold-light),
+                var(--gold)
+            );
+
+            color: #111;
+            border: 1px solid transparent;
+            border-radius: 8px;
+
+            font-family: inherit;
+            font-size: 14px;
+            font-weight: bold;
+            text-decoration: none;
+            cursor: pointer;
+
+            transition:
+                background .2s ease,
+                transform .2s ease;
+        }
+
+        .button:hover {
+            background: var(--gold-light);
+        }
+
+        .button:active {
+            transform: scale(.98);
+        }
+
+        .button:disabled {
+            opacity: .6;
+            cursor: wait;
+            transform: none;
+        }
+
+        .button-secondary {
+            background: rgba(10, 10, 10, .85);
+            color: var(--gold-light);
+            border-color: var(--gold);
+        }
+
+        .button-secondary:hover {
+            background: rgba(212, 175, 55, .15);
+        }
+
+        .button-danger {
+            background: #8f261f;
+            color: white;
+            border-color: #c0392b;
+        }
+
+        .button-danger:hover {
+            background: #b93227;
+        }
+
+        /* ================= MAIN LAYOUT ================= */
+
+        .container {
+            width: min(1180px, calc(100% - 32px));
+            margin: 25px auto;
+            padding: 25px;
+
+            background: rgba(8, 8, 8, .91);
+            border: 1px solid rgba(212, 175, 55, .75);
+            border-radius: 16px;
+
+            box-shadow: 0 12px 40px rgba(0, 0, 0, .4);
+            backdrop-filter: blur(5px);
+        }
+
+        .main-heading {
+            text-align: center;
+            margin: 0 0 8px;
+            color: var(--gold-light);
+            font-size: clamp(23px, 3vw, 32px);
+        }
+
+        .main-subtitle {
+            text-align: center;
+            margin: 0 0 25px;
+            color: #ddd;
+            font-size: 14px;
+            line-height: 1.9;
+        }
+
+        /* ================= TABS ================= */
+
+        .tabs {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 12px;
+            margin-bottom: 22px;
+        }
+
+        .tab {
+            min-height: 52px;
+            padding: 12px 8px;
+
+            background: rgba(18, 18, 18, .96);
+            color: var(--gold-light);
+
+            border: 1px solid var(--gold);
+            border-radius: 9px;
+
+            font-family: inherit;
+            font-size: 15px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .tab:hover {
+            background: rgba(212, 175, 55, .12);
+        }
+
+        .tab.active {
+            background: linear-gradient(
+                135deg,
+                var(--gold-light),
+                var(--gold)
+            );
+
+            color: #111;
+        }
+
+        .panel {
+            display: none;
+        }
+
+        .panel.active {
+            display: block;
+        }
+
+        /* ================= CARDS ================= */
+
+        .card {
+            min-width: 0;
+            margin-bottom: 22px;
+            padding: 22px;
+
+            background: rgba(20, 20, 20, .97);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+        }
+
+        .card h2 {
+            color: var(--gold-light);
+            margin: 0 0 18px;
+            font-size: 21px;
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 0 16px;
+        }
+
+        .field {
+            min-width: 0;
+        }
+
+        label {
+            display: block;
+            margin: 13px 0 7px;
+
+            color: var(--gold-light);
+            font-weight: bold;
+            font-size: 14px;
+        }
+
+        input,
+        select {
+            width: 100%;
+            min-width: 0;
+            min-height: 45px;
+            padding: 10px 12px;
+
+            background: #0c0c0c;
+            color: white;
+
+            border: 1px solid #555;
+            border-radius: 7px;
+
+            font-family: inherit;
+            font-size: 14px;
+        }
+
+        input[type="file"] {
+            padding: 8px;
+        }
+
+        input:focus,
+        select:focus {
+            outline: 2px solid var(--gold);
+            outline-offset: 1px;
+            border-color: var(--gold);
+        }
+
+        input[type="file"]::file-selector-button {
+            margin-left: 8px;
+            padding: 7px 10px;
+
+            background: var(--gold);
+            color: #111;
+
+            border: 0;
+            border-radius: 5px;
+            font-family: inherit;
+            cursor: pointer;
+        }
+
+        .hint {
+            margin-top: 12px;
+            color: #bbb;
+            font-size: 12px;
+            line-height: 1.9;
+        }
+
+        .form-actions {
+            margin-top: 18px;
+        }
+
+        .form-actions .button {
+            min-width: 150px;
+        }
+
+        .message {
+            margin-bottom: 0;
+            line-height: 1.9;
+            font-size: 13px;
+            overflow-wrap: anywhere;
+        }
+
+        /* ================= UPLOADED FILES ================= */
+
+        .section-heading {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 12px;
+            flex-wrap: wrap;
+            margin-bottom: 15px;
+        }
+
+        .section-heading h2 {
+            margin: 0;
+        }
+
+        .file-count {
+            padding: 7px 11px;
+            color: var(--gold-light);
+            background: rgba(212, 175, 55, .08);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            font-size: 12px;
+        }
+
+        .uploaded-item {
+            min-width: 0;
+            margin-top: 12px;
+            padding: 16px;
+
+            background: #0d0d0d;
+            border: 1px solid #454545;
+            border-radius: 9px;
+
+            transition: border-color .2s ease;
+        }
+
+        .uploaded-item:hover {
+            border-color: var(--gold);
+        }
+
+        .uploaded-item h3 {
+            display: flex;
+            align-items: flex-start;
+            gap: 8px;
+
+            margin: 0 0 10px;
+            color: var(--gold-light);
+            font-size: 16px;
+            line-height: 1.8;
+            overflow-wrap: anywhere;
+        }
+
+        .file-number {
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            flex-shrink: 0;
+
+            min-width: 27px;
+            height: 27px;
+            padding: 0 6px;
+
+            background: var(--gold);
+            color: #111;
+            border-radius: 50%;
+            font-size: 12px;
+        }
+
+        .file-details {
+            color: #ccc;
+            font-size: 13px;
+            line-height: 2;
+            overflow-wrap: anywhere;
+        }
+
+        .file-actions {
+            display: flex;
+            gap: 9px;
+            flex-wrap: wrap;
+            margin-top: 12px;
+        }
+
+        .empty-message {
+            padding: 18px 12px;
+            text-align: center;
+
+            color: #ccc;
+            background: rgba(0, 0, 0, .25);
+            border: 1px dashed #555;
+            border-radius: 8px;
+
+            line-height: 1.9;
+            font-size: 13px;
+        }
+
+        /* ================= FOOTER ================= */
+
+        footer {
+            margin-top: 28px;
+            padding: 22px 12px;
+
+            text-align: center;
+            background: rgba(0, 0, 0, .94);
+            border-top: 1px solid var(--border);
+
+            color: #ccc;
+            font-size: 12px;
+            line-height: 2;
+        }
+
+        footer strong {
+            color: var(--gold-light);
+            font-size: 14px;
+        }
+
+        .footer-divider {
+            width: 100px;
+            height: 1px;
+            margin: 10px auto;
+            background: linear-gradient(
+                90deg,
+                transparent,
+                var(--gold),
+                transparent
+            );
+        }
+
+        /* ================= RESPONSIVE ================= */
+
+        @media (max-width: 700px) {
+            body {
+                background-attachment: scroll;
+                background-position: center top;
+            }
+
+            header {
+                justify-content: center;
+                padding: 14px;
+            }
+
+            .brand-frame {
+                width: 100%;
+                min-width: 0;
+                padding: 15px 18px;
+            }
+
+            .header-actions {
+                justify-content: center;
+                width: 100%;
+            }
+
+            .container {
+                width: calc(100% - 20px);
+                margin: 14px auto;
+                padding: 13px;
+            }
+
+            .tabs {
+                grid-template-columns: 1fr;
+                gap: 8px;
+            }
+
+            .tab {
+                min-height: 45px;
+            }
+
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .card {
+                padding: 15px;
+            }
+
+            .card h2 {
+                font-size: 19px;
+            }
+
+            .file-actions .button {
+                flex: 1;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            *,
+            *::before,
+            *::after {
+                transition: none !important;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+
+    <div class="brand-frame">
+        <h1>ابني ابنك</h1>
+        <p>الأستاذ يوسف محمد السيد</p>
+    </div>
+
+    <div class="header-actions">
+
+        <a href="../index.html" class="button button-secondary">
+            الصفحة الرئيسية
+        </a>
+
+        <button
+            class="button button-danger"
+            id="logoutButton"
+            type="button"
+        >
+            تسجيل الخروج
+        </button>
+
+    </div>
+
+</header>
+
+<main class="container">
+
+    <h2 class="main-heading">إدارة المحتوى التعليمي</h2>
+
+    <p class="main-subtitle">
+        اختار القسم اللي عاوز تضيف فيه ملف جديد، وتابع الملفات المرفوعة من نفس المكان.
+    </p>
+
+    <div class="tabs">
+
+        <button
+            class="tab active"
+            type="button"
+            data-panel="lessonPanel"
+        >
+            📚 شرح الدروس
+        </button>
+
+        <button
+            class="tab"
+            type="button"
+            data-panel="notesPanel"
+        >
+            📖 المذكرات
+        </button>
+
+        <button
+            class="tab"
+            type="button"
+            data-panel="examPanel"
+        >
+            📝 الامتحانات
+        </button>
+
+    </div>
+
+    <!-- ==================== شرح الدروس ==================== -->
+
+    <section id="lessonPanel" class="panel active">
+
+        <div class="card">
+
+            <h2>إضافة شرح جديد</h2>
+
+            <form class="uploadForm" data-type="lesson">
+
+                <div class="form-grid">
+
+                    <div class="field">
+                        <label for="lessonTitle">عنوان الشرح</label>
+
+                        <input
+                            id="lessonTitle"
+                            name="title"
+                            required
+                            maxlength="200"
+                            placeholder="مثال: شرح درس الفاعل"
+                        >
+                    </div>
+
+                    <div class="field">
+                        <label for="lessonGrade">الصف الدراسي</label>
+
+                        <select id="lessonGrade" name="grade" required>
+                            <option value="">اختر الصف</option>
+                            <option>الأول الابتدائي</option>
+                            <option>الثاني الابتدائي</option>
+                            <option>الثالث الابتدائي</option>
+                            <option>الرابع الابتدائي</option>
+                            <option>الخامس الابتدائي</option>
+                            <option>السادس الابتدائي</option>
+                            <option>الأول الإعدادي</option>
+                            <option>الثاني الإعدادي</option>
+                            <option>الثالث الإعدادي</option>
+                        </select>
+                    </div>
+
+                    <div class="field">
+                        <label for="lessonTerm">الترم الدراسي</label>
+
+                        <select id="lessonTerm" name="term" required>
+                            <option value="">اختر الترم</option>
+                            <option value="الأول">الترم الأول</option>
+                            <option value="الثاني">الترم الثاني</option>
+                        </select>
+                    </div>
+
+                    <div class="field">
+                        <label for="lessonCategory">نوع الدرس</label>
+
+                        <select
+                            id="lessonCategory"
+                            name="lesson_category"
+                            required
+                        >
+                            <option value="">اختر نوع الدرس</option>
+                            <option value="قراءة">قراءة</option>
+                            <option value="نصوص">نصوص</option>
+                            <option value="نحو">نحو</option>
+                        </select>
+                    </div>
+
+                    <div class="field" style="grid-column: 1 / -1;">
+                        <label for="lessonPdf">ملف الشرح PDF</label>
+
+                        <input
+                            id="lessonPdf"
+                            name="pdf"
+                            type="file"
+                            accept=".pdf,application/pdf"
+                            required
+                        >
+                    </div>
+
+                </div>
+
+                <p class="hint">
+                    الحد الأقصى لحجم الملف 20 ميجابايت.
+                </p>
+
+                <div class="form-actions">
+                    <button class="button" type="submit">
+                        حفظ الشرح
+                    </button>
+                </div>
+
+                <p class="message" role="status" aria-live="polite"></p>
+
+            </form>
+
+        </div>
+
+        <div class="card">
+
+            <div class="section-heading">
+                <h2>الشروحات المرفوعة</h2>
+                <span class="file-count" id="lessonCount">
+                    عدد الملفات: 0
+                </span>
+            </div>
+
+            <div id="lessonList" aria-live="polite">
+                <p class="empty-message">جاري تحميل الشروحات...</p>
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- ==================== المذكرات ==================== -->
+
+    <section id="notesPanel" class="panel">
+
+        <div class="card">
+
+            <h2>إضافة مذكرة جديدة</h2>
+
+            <form class="uploadForm" data-type="notes">
+
+                <div class="form-grid">
+
+                    <div class="field">
+                        <label for="notesTitle">عنوان المذكرة</label>
+
+                        <input
+                            id="notesTitle"
+                            name="title"
+                            required
+                            maxlength="200"
+                            placeholder="مثال: مذكرة النحو"
+                        >
+                    </div>
+
+                    <div class="field">
+                        <label for="notesGrade">الصف الدراسي</label>
+
+                        <select id="notesGrade" name="grade" required>
+                            <option value="">اختر الصف</option>
+                            <option>الأول الابتدائي</option>
+                            <option>الثاني الابتدائي</option>
+                            <option>الثالث الابتدائي</option>
+                            <option>الرابع الابتدائي</option>
+                            <option>الخامس الابتدائي</option>
+                            <option>السادس الابتدائي</option>
+                            <option>الأول الإعدادي</option>
+                            <option>الثاني الإعدادي</option>
+                            <option>الثالث الإعدادي</option>
+                        </select>
+                    </div>
+
+                    <div class="field">
+                        <label for="notesTerm">الترم الدراسي</label>
+
+                        <select id="notesTerm" name="term" required>
+                            <option value="">اختر الترم</option>
+                            <option value="الأول">الترم الأول</option>
+                            <option value="الثاني">الترم الثاني</option>
+                        </select>
+                    </div>
+
+                    <div class="field">
+                        <label for="notesPdf">ملف المذكرة PDF</label>
+
+                        <input
+                            id="notesPdf"
+                            name="pdf"
+                            type="file"
+                            accept=".pdf,application/pdf"
+                            required
+                        >
+                    </div>
+
+                </div>
+
+                <p class="hint">
+                    الحد الأقصى لحجم الملف 20 ميجابايت.
+                </p>
+
+                <div class="form-actions">
+                    <button class="button" type="submit">
+                        حفظ المذكرة
+                    </button>
+                </div>
+
+                <p class="message" role="status" aria-live="polite"></p>
+
+            </form>
+
+        </div>
+
+        <div class="card">
+
+            <div class="section-heading">
+                <h2>المذكرات المرفوعة</h2>
+                <span class="file-count" id="notesCount">
+                    عدد الملفات: 0
+                </span>
+            </div>
+
+            <div id="notesList" aria-live="polite">
+                <p class="empty-message">جاري تحميل المذكرات...</p>
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- ==================== الامتحانات ==================== -->
+
+    <section id="examPanel" class="panel">
+
+        <div class="card">
+
+            <h2>إضافة امتحان جديد</h2>
+
+            <form class="uploadForm" data-type="exam">
+
+                <div class="form-grid">
+
+                    <div class="field">
+                        <label for="examTitle">عنوان الامتحان</label>
+
+                        <input
+                            id="examTitle"
+                            name="title"
+                            required
+                            maxlength="200"
+                            placeholder="مثال: امتحان نحو على الوحدة الأولى"
+                        >
+                    </div>
+
+                    <div class="field">
+                        <label for="examGrade">الصف الدراسي</label>
+
+                        <select id="examGrade" name="grade" required>
+                            <option value="">اختر الصف</option>
+                            <option>الأول الابتدائي</option>
+                            <option>الثاني الابتدائي</option>
+                            <option>الثالث الابتدائي</option>
+                            <option>الرابع الابتدائي</option>
+                            <option>الخامس الابتدائي</option>
+                            <option>السادس الابتدائي</option>
+                            <option>الأول الإعدادي</option>
+                            <option>الثاني الإعدادي</option>
+                            <option>الثالث الإعدادي</option>
+                        </select>
+                    </div>
+
+                    <div class="field">
+                        <label for="examTerm">الترم الدراسي</label>
+
+                        <select id="examTerm" name="term" required>
+                            <option value="">اختر الترم</option>
+                            <option value="الأول">الترم الأول</option>
+                            <option value="الثاني">الترم الثاني</option>
+                        </select>
+                    </div>
+
+                    <div class="field">
+                        <label for="examPdf">ملف الامتحان PDF</label>
+
+                        <input
+                            id="examPdf"
+                            name="pdf"
+                            type="file"
+                            accept=".pdf,application/pdf"
+                            required
+                        >
+                    </div>
+
+                </div>
+
+                <p class="hint">
+                    الحد الأقصى لحجم الملف 20 ميجابايت.
+                </p>
+
+                <div class="form-actions">
+                    <button class="button" type="submit">
+                        حفظ الامتحان
+                    </button>
+                </div>
+
+                <p class="message" role="status" aria-live="polite"></p>
+
+            </form>
+
+        </div>
+
+        <div class="card">
+
+            <div class="section-heading">
+                <h2>الامتحانات المرفوعة</h2>
+                <span class="file-count" id="examCount">
+                    عدد الملفات: 0
+                </span>
+            </div>
+
+            <div id="examList" aria-live="polite">
+                <p class="empty-message">جاري تحميل الامتحانات...</p>
+            </div>
+
+        </div>
+
+    </section>
+
+</main>
+
+<footer>
+    <strong>ابني ابنك في اللغة العربية</strong>
+
+    <div class="footer-divider"></div>
+
+    مع الأستاذ يوسف محمد السيد
+
+    <br>
+
+    طريقك دايمًا للامتياز
+
+    <br>
+
+    جميع الحقوق محفوظة © 2026
+</footer>
+
+<script type="module">
+import { createClient } from
+'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm';
+
+const SUPABASE_URL =
+    'https://yjcfbdwnqslmwlzhwlrr.supabase.co';
+
+/*
+  مهم:
+  ضع هنا نفس Publishable Key الصحيح المستخدم في login.html.
+  لا تضع service_role أو Secret Key في كود المتصفح.
+*/
+const SUPABASE_KEY =
+    'sb_publishable_m9hvko23on9X9klL1e5KtA_G4OtOSWR';
+
+const BUCKET_NAME = 'lessons-pdfs';
+const MAX_FILE_SIZE = 20 * 1024 * 1024;
+
+const supabase = createClient(
+    SUPABASE_URL,
+    SUPABASE_KEY
+);
+
+const sections = {
+    lesson: {
+        list: document.getElementById('lessonList'),
+        count: document.getElementById('lessonCount'),
+        name: 'الشرح'
+    },
+
+    notes: {
+        list: document.getElementById('notesList'),
+        count: document.getElementById('notesCount'),
+        name: 'المذكرة'
+    },
+
+    exam: {
+        list: document.getElementById('examList'),
+        count: document.getElementById('examCount'),
+        name: 'الامتحان'
+    }
+};
+
+/* ==================== التحقق من تسجيل الدخول ==================== */
+
+async function checkLogin() {
+    try {
+        const { data, error } = await supabase.auth.getSession();
+
+        if (error) {
+            throw error;
+        }
+
+        if (!data.session) {
+            window.location.replace('login.html');
+            return false;
+        }
+
+        document.body.style.display = 'block';
+
+        return true;
+
+    } catch (error) {
+        console.error('Login check failed:', error);
+        window.location.replace('login.html');
+        return false;
+    }
+}
+
+/* ==================== التنقل بين الأقسام ==================== */
+
+document.querySelectorAll('.tab').forEach(button => {
+    button.addEventListener('click', () => {
+        document.querySelectorAll('.tab').forEach(tab => {
+            tab.classList.remove('active');
+        });
+
+        document.querySelectorAll('.panel').forEach(panel => {
+            panel.classList.remove('active');
+        });
+
+        button.classList.add('active');
+
+        const target = document.getElementById(
+            button.dataset.panel
+        );
+
+        if (target) {
+            target.classList.add('active');
+        }
+    });
+});
+
+/* ==================== رسائل الحالة ==================== */
+
+function showFormMessage(form, message) {
+    form.querySelector('.message').textContent = message;
+}
+
+function showListMessage(type, message) {
+    const list = sections[type].list;
+
+    list.replaceChildren();
+
+    const paragraph = document.createElement('p');
+    paragraph.className = 'empty-message';
+    paragraph.textContent = message;
+
+    list.appendChild(paragraph);
+}
+
+/* ==================== استخراج مسار الملف من الرابط ==================== */
+
+function getStoragePath(pdfUrl) {
+    if (!pdfUrl) {
+        return null;
+    }
+
+    try {
+        const url = new URL(pdfUrl);
+
+        const marker =
+            '/storage/v1/object/public/' +
+            BUCKET_NAME + '/';
+
+        const index = url.pathname.indexOf(marker);
+
+        if (index === -1) {
+            return null;
+        }
+
+        return decodeURIComponent(
+            url.pathname.slice(index + marker.length)
+        );
+
+    } catch (error) {
+        console.error('Could not parse PDF URL:', error);
+        return null;
+    }
+}
+
+/* ==================== إنشاء بطاقة الملف ==================== */
+
+function createUploadedItem(item, type, number) {
+    const wrapper = document.createElement('article');
+    wrapper.className = 'uploaded-item';
+
+    const title = document.createElement('h3');
+
+    const numberBadge = document.createElement('span');
+    numberBadge.className = 'file-number';
+    numberBadge.textContent = String(number);
+
+    title.appendChild(numberBadge);
+
+    title.appendChild(
+        document.createTextNode(item.title || 'بدون عنوان')
+    );
+
+    wrapper.appendChild(title);
+
+    const details = document.createElement('div');
+    details.className = 'file-details';
+
+    details.textContent =
+        'الصف: ' + (item.grade || 'غير محدد') +
+        ' | الترم: ' + (item.term || 'غير محدد');
+
+    wrapper.appendChild(details);
+
+    if (type === 'lesson' && item.lesson_category) {
+        const category = document.createElement('div');
+
+        category.className = 'file-details';
+        category.textContent =
+            'نوع الدرس: ' + item.lesson_category;
+
+        wrapper.appendChild(category);
+    }
+
+    const actions = document.createElement('div');
+    actions.className = 'file-actions';
+
+    if (item.pdf_url) {
+        const openLink = document.createElement('a');
+
+        openLink.className = 'button';
+        openLink.href = item.pdf_url;
+        openLink.target = '_blank';
+        openLink.rel = 'noopener noreferrer';
+        openLink.textContent = 'فتح ملف PDF';
+
+        actions.appendChild(openLink);
+    }
+
+    const deleteButton = document.createElement('button');
+
+    deleteButton.type = 'button';
+    deleteButton.className = 'button button-danger';
+    deleteButton.textContent = 'حذف الملف';
+
+    deleteButton.addEventListener('click', () => {
+        deleteUploadedItem(item, type, deleteButton);
+    });
+
+    actions.appendChild(deleteButton);
+    wrapper.appendChild(actions);
+
+    return wrapper;
+}
+
+/* ==================== تحميل الملفات ==================== */
+
+async function loadUploadedItems(type) {
+    const section = sections[type];
+
+    showListMessage(type, 'جاري تحميل الملفات...');
+
+    try {
+        const { data, error } = await supabase
+            .from('lessons')
+            .select(
+                'id, title, grade, term, type, lesson_category, pdf_url, created_at'
+            )
+            .eq('type', type)
+            .order('created_at', { ascending: false });
+
+        if (error) {
+            console.error(
+                'Supabase read error:',
+                error.message,
+                error.code,
+                error.details,
+                error.hint
+            );
+
+            throw error;
+        }
+
+        const items = data || [];
+
+        section.list.replaceChildren();
+
+        section.count.textContent =
+            'عدد الملفات: ' + items.length;
+
+        if (items.length === 0) {
+            showListMessage(
+                type,
+                'لم يتم رفع أي ملفات في هذا القسم حتى الآن.'
+            );
+
+            return;
+        }
+
+        items.forEach((item, index) => {
+            section.list.appendChild(
+                createUploadedItem(item, type, index + 1)
+            );
+        });
+
+    } catch (error) {
+        console.error(
+            'Loading uploaded items failed:',
+            error
+        );
+
+        section.count.textContent = 'عدد الملفات: —';
+
+        showListMessage(
+            type,
+            'تعذر تحميل الملفات. راجع المفتاح وصلاحيات القراءة في Supabase.'
+        );
+    }
+}
+
+/* ==================== حذف الملف ==================== */
+
+async function deleteUploadedItem(item, type, button) {
+    const confirmed = window.confirm(
+        'هل أنت متأكد من حذف "' +
+        (item.title || 'بدون عنوان') +
+        '"؟\n\nسيتم حذفه من قائمة الطلاب عند نجاح حذف السجل.'
+    );
+
+    if (!confirmed) {
+        return;
+    }
+
+    button.disabled = true;
+    button.textContent = 'جاري الحذف...';
+
+    try {
+        const { data: deletedRows, error: deleteError } =
+            await supabase
+                .from('lessons')
+                .delete()
+                .eq('id', item.id)
+                .eq('type', type)
+                .select('id');
+
+        if (deleteError) {
+            throw deleteError;
+        }
+
+        if (!deletedRows || deletedRows.length === 0) {
+            throw new Error(
+                'لم يُحذف السجل. تحقق من صلاحيات DELETE في جدول lessons.'
+            );
+        }
+
+        /*
+          بعد نجاح حذف سجل المحتوى، نحاول حذف ملف PDF من التخزين.
+        */
+        const storagePath = getStoragePath(item.pdf_url);
+
+        if (storagePath) {
+            const { error: storageError } = await supabase.storage
+                .from(BUCKET_NAME)
+                .remove([storagePath]);
+
+            if (storageError) {
+                console.error(
+                    'Storage deletion failed:',
+                    storageError
+                );
+
+                alert(
+                    'تم حذف المحتوى من قاعدة البيانات، لكن تعذر حذف ملف PDF من التخزين. راجع صلاحيات Storage.'
+                );
+            }
+        }
+
+        await loadUploadedItems(type);
+
+    } catch (error) {
+        console.error('Delete failed:', error);
+
+        alert(
+            'تعذر حذف الملف: ' +
+            (error.message || 'حدث خطأ غير معروف')
+        );
+
+        button.disabled = false;
+        button.textContent = 'حذف الملف';
+    }
+}
+
+/* ==================== التحقق من ملف PDF ==================== */
+
+function isPdfFile(file) {
+    if (!file) {
+        return false;
+    }
+
+    const correctExtension =
+        file.name.toLowerCase().endsWith('.pdf');
+
+    const correctMime =
+        !file.type || file.type === 'application/pdf';
+
+    return correctExtension && correctMime;
+}
+
+/* ==================== رفع الملفات ==================== */
+
+async function uploadFormSubmit(form, event) {
+    event.preventDefault();
+
+    const button = form.querySelector(
+        'button[type="submit"]'
+    );
+
+    const file = form.elements.pdf.files[0];
+
+    const type = form.dataset.type;
+
+    const title = form.elements.title.value.trim();
+    const grade = form.elements.grade.value;
+    const term = form.elements.term.value;
+
+    /* لا توجد خانة وصف؛ يُحفظ الوصف فارغًا. */
+    const description = '';
+
+    const lessonCategory = type === 'lesson'
+        ? form.elements.lesson_category.value
+        : null;
+
+    if (!title || !grade || !term || !file) {
+        showFormMessage(
+            form,
+            'أكمل البيانات المطلوبة واختر ملف PDF.'
+        );
+
+        return;
+    }
+
+    if (type === 'lesson' && !lessonCategory) {
+        showFormMessage(form, 'اختر نوع الدرس.');
+        return;
+    }
+
+    if (!isPdfFile(file)) {
+        showFormMessage(
+            form,
+            'من فضلك اختر ملف PDF صحيحًا.'
+        );
+
+        return;
+    }
+
+    if (file.size > MAX_FILE_SIZE) {
+        showFormMessage(
+            form,
+            'حجم الملف يجب ألا يتجاوز 20 ميجابايت.'
+        );
+
+        return;
+    }
+
+    button.disabled = true;
+
+    showFormMessage(
+        form,
+        'جاري رفع الملف وحفظ البيانات...'
+    );
+
+    let uploadedPath = null;
+    let recordSaved = false;
+
+    try {
+        const {
+            data: sessionData,
+            error: sessionError
+        } = await supabase.auth.getSession();
+
+        if (sessionError) {
+            throw sessionError;
+        }
+
+        if (!sessionData.session) {
+            throw new Error(
+                'انتهت جلسة الدخول. سجّل الدخول مرة أخرى.'
+            );
+        }
+
+        const uniqueId = crypto.randomUUID();
+        const filePath = uniqueId + '.pdf';
+
+        const { error: uploadError } = await supabase.storage
+            .from(BUCKET_NAME)
+            .upload(filePath, file, {
+                contentType: 'application/pdf',
+                upsert: false
+            });
+
+        if (uploadError) {
+            throw new Error(
+                'تعذر رفع الملف: ' + uploadError.message
+            );
+        }
+
+        uploadedPath = filePath;
+
+        const { data: urlData } = supabase.storage
+            .from(BUCKET_NAME)
+            .getPublicUrl(filePath);
+
+        const record = {
+            title,
+            grade,
+            term,
+            description,
+            content: '',
+            pdf_url: urlData.publicUrl,
+            type
+        };
+
+        if (type === 'lesson') {
+            record.lesson_category = lessonCategory;
+        }
+
+        const { error: insertError } = await supabase
+            .from('lessons')
+            .insert([record]);
+
+        if (insertError) {
+            throw new Error(
+                'تعذر حفظ بيانات الملف: ' +
+                insertError.message
+            );
+        }
+
+        recordSaved = true;
+
+        let successMessage =
+            'تم حفظ ' + sections[type].name +
+            ' بنجاح للصف ' + grade +
+            '، الترم ' + term;
+
+        if (type === 'lesson') {
+            successMessage +=
+                '، نوع الدرس ' + lessonCategory;
+        }
+
+        showFormMessage(form, successMessage + '.');
+
+        form.reset();
+
+        await loadUploadedItems(type);
+
+    } catch (error) {
+        console.error('Upload failed:', error);
+
+        showFormMessage(
+            form,
+            error.message || 'حدث خطأ أثناء رفع الملف.'
+        );
+
+        /*
+          إذا رُفع الملف وفشل حفظ السجل،
+          نحاول حذف الملف غير المرتبط بسجل.
+        */
+        if (uploadedPath && !recordSaved) {
+            const { error: cleanupError } = await supabase.storage
+                .from(BUCKET_NAME)
+                .remove([uploadedPath]);
+
+            if (cleanupError) {
+                console.error(
+                    'Failed to clean up uploaded file:',
+                    cleanupError
+                );
+            }
+        }
+
+    } finally {
+        button.disabled = false;
+    }
+}
+
+/* ==================== تشغيل لوحة التحكم ==================== */
+
+const loggedIn = await checkLogin();
+
+if (loggedIn) {
+
+    document.querySelectorAll('.uploadForm').forEach(form => {
+        form.addEventListener('submit', event => {
+            uploadFormSubmit(form, event);
+        });
+    });
+
+    document.getElementById('logoutButton')
+        .addEventListener('click', async () => {
+            const button = document.getElementById('logoutButton');
+
+            button.disabled = true;
+
+            try {
+                const { error } = await supabase.auth.signOut();
+
+                if (error) {
+                    console.error('Logout failed:', error);
+                }
+
+            } finally {
+                window.location.replace('login.html');
+            }
+        });
+
+    await Promise.all([
+        loadUploadedItems('lesson'),
+        loadUploadedItems('notes'),
+        loadUploadedItems('exam')
+    ]);
+}
+</script>
+
+</body>
+</html>

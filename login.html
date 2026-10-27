@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, nofollow">
+    <title>تسجيل دخول المدرس | ابني ابنك</title>
+
+    <style>
+        :root {
+            --gold: #d4af37;
+            --gold-light: #f5d783;
+            --dark: #0b0b0b;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+            font-family: Tahoma, Arial, sans-serif;
+            color: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 24px;
+
+            background:
+                linear-gradient(
+                    115deg,
+                    rgba(0, 0, 0, .76),
+                    rgba(0, 0, 0, .58)
+                ),
+                url("../youssef2.jpg.jpg") center / cover no-repeat fixed;
+
+            background-color: var(--dark);
+        }
+
+        /* الحاوية الرئيسية */
+        .login-container {
+            width: min(100%, 900px);
+            display: grid;
+            grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr);
+            overflow: hidden;
+            border: 1px solid rgba(212, 175, 55, .8);
+            border-radius: 20px;
+            background: rgba(12, 12, 12, .88);
+            box-shadow: 0 18px 55px rgba(0, 0, 0, .55);
+            backdrop-filter: blur(8px);
+        }
+
+        /* قسم الشعار */
+        .brand-panel {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 30px 22px;
+
+            background: linear-gradient(
+                145deg,
+                rgba(212, 175, 55, .16),
+                rgba(0, 0, 0, .18)
+            );
+
+            border-left: 1px solid rgba(212, 175, 55, .38);
+        }
+
+        /* صورة الأستاذ */
+        .teacher-avatar {
+              width: 140px;
+    height: 140px;
+    margin-bottom: 12px;
+    border: 4px solid var(--gold);
+    border-radius: 50%;
+    object-fit: cover;
+    object-position: center 25%;
+    box-shadow:
+        0 0 0 5px rgba(212, 175, 55, .15),
+        0 8px 22px rgba(0, 0, 0, .4);
+        }
+
+        /* أيقونة الكتب */
+        .brand-icon {
+            font-size: 29px;
+            line-height: 1.1;
+            margin-bottom: 5px;
+        }
+
+        /* اسم المنصة */
+        .brand-panel h1 {
+            color: var(--gold-light);
+            font-size: clamp(21px, 2.2vw, 27px);
+            margin: 0 0 5px;
+            line-height: 1.5;
+        }
+
+        .brand-panel .subtitle {
+            color: #f0f0f0;
+            line-height: 1.7;
+            margin: 0;
+            font-size: 13px;
+        }
+
+        .brand-panel .teacher {
+            margin: 7px 0 4px;
+            color: var(--gold-light);
+            font-size: 13px;
+            font-weight: bold;
+            line-height: 1.7;
+        }
+
+        /* قسم تسجيل الدخول */
+        .form-panel {
+            padding: 38px clamp(22px, 4vw, 48px);
+            min-width: 0;
+        }
+
+        .form-panel h2 {
+            margin: 0 0 8px;
+            text-align: center;
+            font-size: 25px;
+        }
+
+        .form-intro {
+            color: #cfcfcf;
+            text-align: center;
+            margin: 0 0 28px;
+            line-height: 1.8;
+            font-size: 14px;
+        }
+
+        .form-group {
+            margin-bottom: 18px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: #f0e6c7;
+            font-size: 14px;
+        }
+
+        input {
+            width: 100%;
+            min-height: 48px;
+            padding: 13px 14px;
+            border: 1px solid #4b4637;
+            border-radius: 9px;
+            background: rgba(4, 4, 4, .8);
+            color: #fff;
+            font-family: inherit;
+            font-size: 15px;
+            outline: none;
+            transition: border-color .2s, box-shadow .2s;
+        }
+
+        input:focus {
+            border-color: var(--gold);
+            box-shadow: 0 0 0 3px rgba(212, 175, 55, .13);
+        }
+
+        .login-button {
+            width: 100%;
+            min-height: 48px;
+            padding: 13px 16px;
+            margin-top: 5px;
+            border: 0;
+            border-radius: 9px;
+
+            background: linear-gradient(
+                135deg,
+                var(--gold-light),
+                var(--gold)
+            );
+
+            color: #111;
+            font-family: inherit;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: transform .2s, filter .2s;
+        }
+
+        .login-button:hover:not(:disabled) {
+            transform: translateY(-2px);
+            filter: brightness(1.06);
+        }
+
+        .login-button:disabled {
+            opacity: .7;
+            cursor: wait;
+        }
+
+        .back-link {
+            display: block;
+            text-align: center;
+            margin-top: 22px;
+            color: var(--gold-light);
+            text-decoration: none;
+            font-size: 14px;
+        }
+
+        .back-link:hover {
+            color: #fff;
+        }
+
+        #loginMessage {
+            text-align: center;
+            margin: 14px 0 0;
+            line-height: 1.8;
+            font-size: 14px;
+            overflow-wrap: anywhere;
+        }
+
+        .footer {
+            text-align: center;
+            color: #999;
+            font-size: 12px;
+            line-height: 1.8;
+            margin-top: 24px;
+        }
+
+        /* تنسيق الموبايل */
+        @media (max-width: 650px) {
+            body {
+                padding: 14px;
+                background-attachment: scroll;
+            }
+
+            .login-container {
+                max-width: 460px;
+                grid-template-columns: 1fr;
+            }
+
+            .brand-panel {
+                padding: 22px 18px;
+                border-left: 0;
+                border-bottom: 1px solid rgba(212, 175, 55, .38);
+            }
+
+            .teacher-avatar {
+                width: 100px;
+                height: 100px;
+                margin-bottom: 6px;
+            }
+
+            .brand-icon {
+                font-size: 25px;
+                margin-bottom: 4px;
+            }
+
+            .brand-panel h1 {
+                font-size: 22px;
+                margin-bottom: 3px;
+            }
+
+            .brand-panel .subtitle {
+                font-size: 12px;
+            }
+
+            .brand-panel .teacher {
+                font-size: 12px;
+                margin: 5px 0 3px;
+            }
+
+            .form-panel {
+                padding: 27px 22px;
+            }
+
+            .form-panel h2 {
+                font-size: 22px;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            *,
+            *::before,
+            *::after {
+                transition-duration: .01ms !important;
+                animation-duration: .01ms !important;
+                scroll-behavior: auto !important;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <main class="login-container">
+
+        <!-- بيانات المنصة وصورة الأستاذ -->
+        <section class="brand-panel" aria-label="بيانات المنصة">
+
+            <img
+                class="teacher-avatar"
+                src="../youssef2.jpg.jpg"
+                alt="صورة الأستاذ يوسف محمد السيد"
+            >
+
+            <div class="brand-icon" aria-hidden="true">📚</div>
+
+            <h1>ابني ابنك</h1>
+
+            <p class="subtitle">في اللغة العربية</p>
+
+            <p class="teacher">الأستاذ يوسف محمد السيد</p>
+
+            <p class="subtitle">
+                مع الأستاذ طريقك دايمًا للامتياز
+            </p>
+
+        </section>
+
+        <!-- نموذج تسجيل الدخول -->
+        <section class="form-panel">
+
+            <h2>تسجيل دخول المدرس</h2>
+
+            <p class="form-intro">
+                سجّل الدخول للوصول إلى لوحة التحكم وإدارة المحتوى التعليمي.
+            </p>
+
+            <form id="loginForm">
+
+                <div class="form-group">
+                    <label for="username">البريد الإلكتروني</label>
+
+                    <input
+                        type="email"
+                        id="username"
+                        name="username"
+                        placeholder="أدخل البريد الإلكتروني"
+                        autocomplete="username"
+                        required
+                    >
+                </div>
+
+                <div class="form-group">
+                    <label for="password">كلمة المرور</label>
+
+                    <input
+                        type="password"
+                        id="password"
+                        name="password"
+                        placeholder="أدخل كلمة المرور"
+                        autocomplete="current-password"
+                        required
+                    >
+                </div>
+
+                <button
+                    type="submit"
+                    class="login-button"
+                >
+                    تسجيل الدخول
+                </button>
+
+                <p
+                    id="loginMessage"
+                    role="status"
+                    aria-live="polite"
+                ></p>
+
+            </form>
+
+            <a href="../index.html" class="back-link">
+                العودة إلى الصفحة الرئيسية
+            </a>
+
+            <div class="footer">
+                ابني ابنك في اللغة العربية
+                <br>
+                جميع الحقوق محفوظة © 2026
+            </div>
+
+        </section>
+
+    </main>
+
+    <script type="module">
+        import { createClient } from
+            'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm';
+
+        const SUPABASE_URL =
+            'https://yjcfbdwnqslmwlzhwlrr.supabase.co';
+
+        /*
+          استبدل القيمة بمفتاح Publishable الصحيح
+          من إعدادات مشروع Supabase.
+          لا تستخدم مفتاح secret أو service_role هنا.
+        */
+        const SUPABASE_KEY =
+            'sb_publishable_m9hvko23on9X9klL1e5KtA_G4OtOSWR';
+
+        const supabase = createClient(
+            SUPABASE_URL,
+            SUPABASE_KEY
+        );
+
+        const loginForm =
+            document.getElementById('loginForm');
+
+        const usernameInput =
+            document.getElementById('username');
+
+        const passwordInput =
+            document.getElementById('password');
+
+        const loginButton =
+            loginForm.querySelector('button[type="submit"]');
+
+        const message =
+            document.getElementById('loginMessage');
+
+        loginForm.addEventListener('submit', async (event) => {
+            event.preventDefault();
+
+            const email = usernameInput.value.trim();
+            const password = passwordInput.value;
+
+            loginButton.disabled = true;
+            loginButton.textContent = 'جارٍ تسجيل الدخول...';
+
+            message.style.color = '#f5d783';
+            message.textContent = '';
+
+            try {
+                const { data, error } =
+                    await supabase.auth.signInWithPassword({
+                        email,
+                        password
+                    });
+
+                if (error) {
+                    throw error;
+                }
+
+                if (data.user) {
+                    window.location.href = 'dashboard.html';
+                } else {
+                    throw new Error(
+                        'لم يتم العثور على حساب مستخدم.'
+                    );
+                }
+
+            } catch (error) {
+                console.error('Login error:', error);
+
+                message.style.color = '#ff8585';
+
+                if (
+                    String(error.message || '')
+                        .toLowerCase()
+                        .includes('api key')
+                ) {
+                    message.textContent =
+                        'مفتاح Supabase غير صحيح. راجع المفتاح الموجود في الكود.';
+                } else {
+                    message.textContent =
+                        'تعذر تسجيل الدخول. تأكد من البريد الإلكتروني وكلمة المرور.';
+                }
+
+                loginButton.disabled = false;
+                loginButton.textContent = 'تسجيل الدخول';
+            }
+        });
+    </script>
+
+</body>
+</html>
