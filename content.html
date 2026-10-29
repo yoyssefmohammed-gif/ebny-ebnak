@@ -1,0 +1,774 @@
+        
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>ابني ابنك | المحتوى التعليمي</title>
+
+    <style>
+        :root {
+            --gold: #d9ad42;
+            --gold-light: #f5d783;
+            --black: #080808;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+            font-family: Tahoma, Arial, sans-serif;
+            color: white;
+
+            background:
+                linear-gradient(
+                    to bottom,
+                    rgba(0, 0, 0, 0.42),
+                    rgba(0, 0, 0, 0.78) 50%,
+                    rgba(0, 0, 0, 0.94)
+                ),
+                url("../youssef2.jpg.jpg") center 10% / cover fixed no-repeat;
+
+            background-color: var(--black);
+        }
+
+        /* رأس الصفحة */
+        header {
+            text-align: center;
+            padding: 25px 15px 20px;
+            background: rgba(0, 0, 0, 0.35);
+            border-bottom: 1px solid rgba(217, 173, 66, 0.7);
+        }
+
+        .brand {
+            color: var(--gold-light);
+            font-size: clamp(27px, 4vw, 40px);
+            font-weight: bold;
+            margin: 0 0 8px;
+            text-shadow: 0 2px 10px #000;
+        }
+
+        .subtitle {
+            font-size: 16px;
+            color: white;
+            margin: 0;
+            line-height: 1.8;
+            text-shadow: 0 2px 8px #000;
+        }
+
+        .teacher-name {
+            color: var(--gold-light);
+            font-size: 14px;
+            margin: 7px 0 0;
+        }
+
+        /* توزيع المحتوى والحكمة */
+        .page-layout {
+            display: grid;
+            grid-template-columns: 245px minmax(0, 1fr);
+            gap: 24px;
+            align-items: start;
+
+            width: min(1200px, calc(100% - 32px));
+            margin: 25px auto;
+        }
+
+        /* الحكمة في جانب الصفحة */
+        .wisdom-section {
+            grid-column: 1;
+            grid-row: 1;
+            position: sticky;
+            top: 25px;
+        }
+
+        .wisdom-card {
+            padding: 24px 17px 20px;
+            text-align: center;
+
+            background: linear-gradient(
+                145deg,
+                rgba(7, 7, 7, 0.94),
+                rgba(30, 25, 15, 0.92)
+            );
+
+            border: 1px solid var(--gold);
+            border-radius: 12px;
+
+            box-shadow:
+                0 8px 25px rgba(0, 0, 0, 0.4),
+                inset 0 0 18px rgba(217, 173, 66, 0.06);
+        }
+
+        .wisdom-mark {
+            display: block;
+            color: var(--gold);
+            font-family: Georgia, serif;
+            font-size: 42px;
+            line-height: 0.8;
+        }
+
+        .wisdom-text {
+            color: white;
+            font-size: 19px;
+            font-weight: bold;
+            line-height: 2;
+            margin: 12px 0 17px;
+            text-shadow: 0 2px 6px #000;
+        }
+
+        .wisdom-line {
+            width: 65px;
+            height: 2px;
+            margin: 0 auto 15px;
+
+            background: linear-gradient(
+                to right,
+                transparent,
+                var(--gold),
+                transparent
+            );
+        }
+
+        .wisdom-footer {
+            color: var(--gold-light);
+            font-size: 12px;
+            line-height: 2;
+            margin: 0;
+        }
+
+        /* المحتوى الرئيسي */
+        .container {
+            grid-column: 2;
+            grid-row: 1;
+            min-width: 0;
+        }
+
+        /* زر الصفحة الرئيسية في أعلى اليمين */
+        .back-container {
+            display: flex;
+            justify-content: flex-start;
+            margin-bottom: 18px;
+        }
+
+        .back {
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+
+            padding: 8px 14px;
+
+            color: var(--gold-light);
+            text-decoration: none;
+            font-size: 13px;
+
+            background: rgba(0, 0, 0, 0.82);
+            border: 1px solid #8d6c28;
+            border-radius: 7px;
+
+            transition: 0.2s;
+        }
+
+        .back:hover {
+            background: rgba(217, 173, 66, 0.15);
+            border-color: var(--gold-light);
+            color: white;
+        }
+
+        /* خانات الصف والترم الصغيرة */
+        .filters {
+            max-width: 530px;
+            margin: 0 auto 20px;
+            padding: 12px;
+
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 10px;
+
+            background: rgba(15, 15, 15, 0.92);
+            border: 1px solid #8d6c28;
+            border-radius: 10px;
+        }
+
+        .field {
+            min-width: 0;
+        }
+
+        .field label {
+            display: block;
+            margin-bottom: 6px;
+            color: var(--gold-light);
+            font-size: 12px;
+            font-weight: bold;
+        }
+
+        select {
+            display: block;
+            width: 100%;
+            min-width: 0;
+            padding: 8px 6px;
+
+            border: 1px solid #8d6c28;
+            border-radius: 7px;
+
+            background: #090909;
+            color: white;
+            font-family: inherit;
+            font-size: 12px;
+        }
+
+        select:focus {
+            outline: 1px solid var(--gold-light);
+        }
+
+        button {
+            grid-column: 1 / -1;
+            justify-self: center;
+
+            width: 180px;
+            max-width: 100%;
+            padding: 9px 12px;
+
+            border: none;
+            border-radius: 7px;
+
+            background: linear-gradient(
+                135deg,
+                var(--gold-light),
+                var(--gold)
+            );
+
+            color: #111;
+            font-family: inherit;
+            font-size: 13px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        button:hover {
+            filter: brightness(1.08);
+            transform: translateY(-1px);
+        }
+
+        button:disabled {
+            opacity: 0.7;
+            cursor: wait;
+            transform: none;
+        }
+
+        /* رسائل الموقع */
+        #message {
+            text-align: center;
+            padding: 17px 12px;
+            line-height: 1.9;
+            color: #eee;
+
+            background: rgba(15, 15, 15, 0.93);
+            border: 1px solid rgba(217, 173, 66, 0.4);
+            border-radius: 9px;
+        }
+
+        /* بطاقات المحتوى */
+        .card {
+            margin-top: 14px;
+            padding: 16px;
+
+            background: rgba(17, 17, 17, 0.94);
+            border: 1px solid #8d6c28;
+            border-radius: 10px;
+
+            overflow-wrap: anywhere;
+            box-shadow: 0 5px 18px rgba(0, 0, 0, 0.2);
+        }
+
+        .card h3 {
+            margin: 0 0 10px;
+            color: var(--gold-light);
+            font-size: 18px;
+            line-height: 1.7;
+        }
+
+        .description {
+            color: #eee;
+            line-height: 1.9;
+            white-space: pre-wrap;
+            overflow-wrap: anywhere;
+            font-size: 14px;
+        }
+
+        .pdf-link {
+            display: inline-block;
+            margin-top: 8px;
+            padding: 10px 15px;
+
+            border-radius: 7px;
+            background: var(--gold);
+            color: #111;
+
+            text-decoration: none;
+            font-size: 13px;
+            font-weight: bold;
+        }
+
+        .pdf-link:hover {
+            background: var(--gold-light);
+        }
+
+        /* نهاية الصفحة */
+        footer {
+            text-align: center;
+            padding: 17px 10px;
+            margin-top: 30px;
+
+            background: rgba(0, 0, 0, 0.9);
+            border-top: 1px solid #705621;
+
+            color: #ddd;
+            font-size: 12px;
+            line-height: 2;
+        }
+
+        footer span {
+            color: var(--gold-light);
+            font-weight: bold;
+        }
+
+        /* الشاشات المتوسطة */
+        @media (max-width: 900px) {
+            .page-layout {
+                grid-template-columns: 200px minmax(0, 1fr);
+                gap: 15px;
+                width: calc(100% - 24px);
+            }
+
+            .wisdom-card {
+                padding: 20px 12px;
+            }
+
+            .wisdom-text {
+                font-size: 17px;
+            }
+        }
+
+        /* الموبايل */
+        @media (max-width: 650px) {
+            body {
+                background-attachment: scroll;
+                background-position: center 10%;
+            }
+
+            header {
+                padding: 20px 10px 16px;
+            }
+
+            .page-layout {
+                display: flex;
+                flex-direction: column;
+                gap: 20px;
+
+                width: calc(100% - 20px);
+                margin: 18px auto;
+            }
+
+            .wisdom-section {
+                position: static;
+                width: 100%;
+                order: 1;
+            }
+
+            .container {
+                width: 100%;
+                order: 2;
+            }
+
+            .wisdom-card {
+                padding: 16px 13px;
+            }
+
+            .wisdom-mark {
+                font-size: 32px;
+            }
+
+            .wisdom-text {
+                font-size: 18px;
+                line-height: 1.8;
+                margin: 8px 0 12px;
+            }
+
+            .wisdom-line {
+                margin-bottom: 10px;
+            }
+
+            .filters {
+                padding: 10px;
+                gap: 8px;
+            }
+
+            .field label {
+                font-size: 12px;
+            }
+
+            select {
+                padding: 8px 4px;
+                font-size: 12px;
+            }
+
+            .card {
+                padding: 13px;
+            }
+
+            .card h3 {
+                font-size: 16px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <h1 class="brand">ابني ابنك</h1>
+        <p class="subtitle">في اللغة العربية</p>
+        <p class="teacher-name">الأستاذ يوسف محمد السيد</p>
+    </header>
+
+    <div class="page-layout">
+
+        <!-- الحكمة الجانبية -->
+        <aside class="wisdom-section">
+            <div class="wisdom-card">
+
+                <span class="wisdom-mark">“</span>
+
+                <p class="wisdom-text">
+                    كل حرف بتتعلمه النهارده،
+                    بيقرّبك من حلمك بكرة.
+                </p>
+
+                <div class="wisdom-line"></div>
+
+                <p class="wisdom-footer">
+                    مع الأستاذ يوسف محمد السيد
+                    <br>
+                    طريقك دايمًا للامتياز
+                </p>
+
+            </div>
+        </aside>
+
+        <!-- منطقة المحتوى -->
+        <main class="container">
+
+            <div class="back-container">
+                <a class="back" href="../index.html">
+                    <span>›</span>
+                    الصفحة الرئيسية
+                </a>
+            </div>
+
+            <section class="filters">
+
+                <div class="field">
+                    <label for="grade">الصف الدراسي</label>
+
+                    <select id="grade">
+                        <option value="">اختر الصف</option>
+                        <option value="الأول الابتدائي">الأول الابتدائي</option>
+                        <option value="الثاني الابتدائي">الثاني الابتدائي</option>
+                        <option value="الثالث الابتدائي">الثالث الابتدائي</option>
+                        <option value="الرابع الابتدائي">الرابع الابتدائي</option>
+                        <option value="الخامس الابتدائي">الخامس الابتدائي</option>
+                        <option value="السادس الابتدائي">السادس الابتدائي</option>
+                        <option value="الأول الإعدادي">الأول الإعدادي</option>
+                        <option value="الثاني الإعدادي">الثاني الإعدادي</option>
+                        <option value="الثالث الإعدادي">الثالث الإعدادي</option>
+                    </select>
+                </div>
+
+                <div class="field">
+                    <label for="term">الترم الدراسي</label>
+
+                    <select id="term">
+                        <option value="">اختر الترم</option>
+                        <option value="الأول">الترم الأول</option>
+                        <option value="الثاني">الترم الثاني</option>
+                    </select>
+                </div>
+
+                <button id="searchButton" type="button">
+                    عرض المحتوى
+                </button>
+
+            </section>
+
+            <section id="results" aria-live="polite">
+                <p id="message">
+                    اختر الصف الدراسي والترم، ثم اضغط على عرض المحتوى.
+                </p>
+            </section>
+
+        </main>
+
+    </div>
+
+    <footer>
+        <span>ابني ابنك في اللغة العربية</span>
+        <br>
+        مع الأستاذ يوسف محمد السيد — جميع الحقوق محفوظة © 2026
+    </footer>
+
+    <script type="module">
+        import { createClient } from
+            'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm';
+
+        const SUPABASE_URL =
+            'https://yjcfbdwnqslmwlzhwlrr.supabase.co';
+
+        const SUPABASE_KEY =
+            'sb_publishable_m9hvko23on9X9klL1e5KtA_GOtOSWR';
+
+        const supabase = createClient(
+            SUPABASE_URL,
+            SUPABASE_KEY
+        );
+
+        const params = new URLSearchParams(
+            window.location.search
+        );
+
+        const type = params.get('type');
+
+        const titles = {
+            lesson: 'شرح الدروس',
+            notes: 'المذكرات التعليمية',
+            exam: 'الامتحانات'
+        };
+
+        const pageTitle = document.querySelector('.brand');
+        const gradeSelect = document.getElementById('grade');
+        const termSelect = document.getElementById('term');
+        const searchButton = document.getElementById('searchButton');
+        const results = document.getElementById('results');
+
+        if (titles[type]) {
+            pageTitle.textContent = titles[type];
+        }
+
+        function showMessage(message) {
+            results.replaceChildren();
+
+            const paragraph = document.createElement('p');
+            paragraph.id = 'message';
+            paragraph.textContent = message;
+
+            results.appendChild(paragraph);
+        }
+
+        // توحيد كتابة أسماء الصفوف حتى لو اختلفت الهمزة أو كلمة "الصف".
+        function normalizeGradeName(value) {
+            if (!value) return '';
+
+            let name = String(value).trim().replace(/^الصف\s*/u, '').replace(/\s+/g, ' ');
+            name = name.replace(/[إأآ]/g, 'ا').replace(/ى/g, 'ي');
+
+            const aliases = {
+                'اول الابتدائي': 'الاول الابتدائي',
+                'الاول الابتدائي': 'الاول الابتدائي',
+                'الثاني الابتدائي': 'الثاني الابتدائي',
+                'الثانى الابتدائي': 'الثاني الابتدائي',
+                'الثالث الابتدائي': 'الثالث الابتدائي',
+                'الرابع الابتدائي': 'الرابع الابتدائي',
+                'الخامس الابتدائي': 'الخامس الابتدائي',
+                'السادس الابتدائي': 'السادس الابتدائي',
+                'اول الاعدادي': 'الاول الاعدادي',
+                'الثاني الاعدادي': 'الثاني الاعدادي',
+                'الثالث الاعدادي': 'الثالث الاعدادي'
+            };
+
+            return aliases[name] || name;
+        }
+
+        // يقرأ الصف من حساب الطالب ويختاره تلقائيًا.
+        let loggedInStudentGrade = '';
+
+        async function initializeStudentContent() {
+            try {
+                const { data: sessionData, error: sessionError } =
+                    await supabase.auth.getSession();
+
+                if (sessionError) throw sessionError;
+
+                const user = sessionData?.session?.user;
+                if (!user) {
+                    window.location.href = '../student-auth.html';
+                    return;
+                }
+
+                const { data: profile, error: profileError } = await supabase
+                    .from('student_profiles')
+                    .select('student_name, grade')
+                    .eq('id', user.id)
+                    .maybeSingle();
+
+                if (profileError) throw profileError;
+
+                if (!profile || !profile.grade) {
+                    showMessage('لم نجد الصف الدراسي في بيانات حسابك. تواصل مع المدرس لتحديث بيانات الحساب.');
+                    gradeSelect.disabled = true;
+                    searchButton.disabled = true;
+                    return;
+                }
+
+                loggedInStudentGrade = normalizeGradeName(profile.grade);
+
+                const matchingOption = Array.from(gradeSelect.options).find(option =>
+                    normalizeGradeName(option.value) === loggedInStudentGrade ||
+                    normalizeGradeName(option.textContent) === loggedInStudentGrade
+                );
+
+                if (!matchingOption) {
+                    showMessage('الصف المسجل في حسابك (' + profile.grade + ') لا يطابق أسماء الصفوف الموجودة بصفحة المحتوى.');
+                    gradeSelect.disabled = true;
+                    searchButton.disabled = true;
+                    return;
+                }
+
+                gradeSelect.value = matchingOption.value;
+                gradeSelect.disabled = true;
+                gradeSelect.style.display = 'none';
+                const gradeField = gradeSelect.closest('.field');
+                if (gradeField) gradeField.style.display = 'none';
+
+                const gradeLabel = document.createElement('p');
+                gradeLabel.style.cssText = 'text-align:center;color:#f5d783;grid-column:1/-1;margin:0;';
+                gradeLabel.textContent = 'الصف الدراسي: ' + matchingOption.textContent;
+                const filters = document.querySelector('.filters');
+                if (filters && !document.getElementById('studentGradeLabel')) {
+                    gradeLabel.id = 'studentGradeLabel';
+                    filters.insertBefore(gradeLabel, filters.firstChild);
+                }
+
+                showMessage('أهلًا ' + (profile.student_name || '') + '، اختر الترم الدراسي ثم اضغط على عرض المحتوى.');
+            } catch (error) {
+                console.error('Student initialization error:', error);
+                showMessage('تعذر التحقق من حساب الطالب: ' + (error.message || 'خطأ غير معروف') + '. تأكد من تسجيل الدخول وصلاحيات جدول student_profiles.');
+            }
+        }
+
+        function createCard(item) {
+            const card = document.createElement('article');
+            card.className = 'card';
+
+            const title = document.createElement('h3');
+            title.textContent = item.title || 'بدون عنوان';
+
+            card.appendChild(title);
+
+            if (item.description) {
+                const description = document.createElement('p');
+                description.className = 'description';
+                description.textContent = item.description;
+
+                card.appendChild(description);
+            }
+
+            if (item.pdf_url) {
+                const link = document.createElement('a');
+
+                link.className = 'pdf-link';
+                link.href = item.pdf_url;
+                link.target = '_blank';
+                link.rel = 'noopener noreferrer';
+                link.textContent = 'فتح ملف PDF';
+
+                card.appendChild(link);
+            }
+
+            return card;
+        }
+
+        async function loadContent() {
+            if (!titles[type]) {
+                showMessage(
+                    'نوع المحتوى غير محدد. ارجع للصفحة الرئيسية واختر القسم المطلوب.'
+                );
+                return;
+            }
+
+            const grade = gradeSelect.value;
+            const term = termSelect.value;
+
+            if (!grade || !term) {
+                showMessage(
+                    'من فضلك اختر الصف الدراسي والترم أولًا.'
+                );
+                return;
+            }
+
+            searchButton.disabled = true;
+            searchButton.textContent = 'جاري تحميل المحتوى...';
+
+            showMessage('جاري البحث عن المحتوى...');
+
+            try {
+                const { data, error } = await supabase
+                    .from('lessons')
+                    .select(
+                        'id, title, description, grade, term, type, pdf_url, created_at'
+                    )
+                    .eq('type', type)
+                    .eq('grade', grade)
+                    .eq('term', term)
+                    .not('pdf_url', 'is', null)
+                    .order('created_at', { ascending: false });
+
+                if (error) {
+                    throw error;
+                }
+
+                results.replaceChildren();
+
+                if (!data || data.length === 0) {
+                    showMessage(
+                        'لا يوجد محتوى مضاف لهذا الصف والترم في هذا القسم حتى الآن.'
+                    );
+                    return;
+                }
+
+                data.forEach(item => {
+                    results.appendChild(createCard(item));
+                });
+
+            } catch (error) {
+                console.error('Content loading error:', error);
+
+                showMessage(
+                    'تعذر تحميل المحتوى: ' + (error?.message || 'خطأ غير معروف') + ' — راجع مفتاح Supabase وصلاحيات القراءة.'
+                );
+
+            } finally {
+                searchButton.disabled = false;
+                searchButton.textContent = 'عرض المحتوى';
+            }
+        }
+
+        searchButton.addEventListener('click', loadContent);
+
+        // لا يتم عرض محتوى الطالب قبل قراءة صفه من حسابه.
+        await initializeStudentContent();
+
+        if (!titles[type]) {
+            showMessage(
+                'نوع المحتوى غير محدد. ارجع للصفحة الرئيسية واختر القسم المطلوب.'
+            );
+        }
+    </script>
+
+</body>
+</html>
+```
