@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>صفحة الطالب | ابني ابنك</title>
+<style>
+:root{--gold:#d9ad42;--light:#f5d783;--black:#080808;--panel:#171717}*{box-sizing:border-box}body{margin:0;background:var(--black);color:#fff;font-family:Tahoma,Arial,sans-serif;padding:24px}main{max-width:850px;margin:auto}header{border-bottom:2px solid var(--gold);padding-bottom:18px;display:flex;justify-content:space-between;align-items:center;gap:14px;flex-wrap:wrap}h1{color:var(--gold);margin:0 0 8px}.card{background:var(--panel);border:1px solid #514321;border-radius:14px;padding:20px;margin-top:22px}.links{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px;margin-top:18px}a,button{display:block;text-align:center;padding:14px;border-radius:9px;background:linear-gradient(135deg,var(--light),var(--gold));color:#111;text-decoration:none;font-weight:bold;border:0;font-family:inherit;cursor:pointer}.secondary{background:#292929;color:#fff;border:1px solid #555}#status{line-height:1.9;color:#eee}
+</style></head><body><main><header><div><h1>ابني ابنك</h1><div>مساحة الطالب — اللغة العربية</div></div><button id="logout" class="secondary" type="button">تسجيل الخروج</button></header>
+<section class="card"><h2 id="welcome">جارٍ التحقق من تسجيل الدخول...</h2><div id="status">لحظة من فضلك.</div></section>
+<section class="card"><h2>محتوى الموقع</h2><p>اختار القسم المطلوب. تنبيه: روابط المحتوى الحالية قد تكون متاحة للعامة إلى أن ننتهي من ضبط صلاحيات قاعدة البيانات وملفات PDF.</p><div class="links"><a href="./pages/content.html?type=lesson">الدروس</a><a href="./pages/content.html?type=notes">المذكرات</a><a href="./pages/content.html?type=exam">الامتحانات</a></div><p><a class="secondary" href="./index.html">الصفحة الرئيسية</a></p></section></main>
+<script type="module">
+import {createClient} from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm';
+const supabase=createClient('https://yjcfbdwnqslmwlzhwlrr.supabase.co','sb_publishable_m9hvko23on9X9klL1e5KtA_G4OtOSWR');
+const welcome=document.getElementById('welcome'),status=document.getElementById('status');
+async function start(){const {data:{session},error}=await supabase.auth.getSession();if(error||!session){window.location.replace('./student-auth.html');return}
+if(session.user.user_metadata?.role!=='student'){await supabase.auth.signOut();window.location.replace('./student-auth.html');return}
+const {data:profile,error:profileError}=await supabase.from('student_profiles').select('student_name, grade').eq('id',session.user.id).maybeSingle();
+if(profileError||!profile){welcome.textContent='تعذر تحميل بيانات الطالب';status.textContent='سجل الخروج ثم حاول الدخول مرة أخرى. لو استمرت المشكلة، نراجع صلاحيات جدول student_profiles.';return}
+welcome.textContent=`أهلًا يا ${profile.student_name}`;status.textContent=`الصف الدراسي: ${profile.grade}`}
+document.getElementById('logout').addEventListener('click',async()=>{await supabase.auth.signOut();window.location.replace('./student-auth.html')});start();
+</script></body></html>

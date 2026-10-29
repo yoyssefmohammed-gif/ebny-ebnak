@@ -1,174 +1,39 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>دخول الطلاب | ابني ابنك</title>
+<html lang="ar" dir="rtl"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>دخول الطلاب | ابني ابنك</title>
 <style>
-:root{--gold:#d9ad42;--light:#f5d783;--black:#080808;--panel:#171717}
-*{box-sizing:border-box}
-body{margin:0;min-height:100vh;background:var(--black);color:#fff;font-family:Tahoma,Arial,sans-serif;display:flex;align-items:center;justify-content:center;padding:20px}
-main{width:min(100%,520px)}
-.brand{text-align:center;margin-bottom:22px}
-.brand h1{color:var(--gold);margin:0 0 8px;font-size:32px}
-.brand p{margin:0;color:#ddd}
-.card{background:var(--panel);border:1px solid #514321;border-radius:16px;padding:24px;box-shadow:0 12px 35px #0008}
-.tabs{display:flex;gap:10px;margin-bottom:22px}
-button,.tab{font-family:inherit;cursor:pointer;border:0;border-radius:9px;padding:12px 16px;font-weight:bold}
-.tab{flex:1;background:#292929;color:#fff}
-.tab.active,.submit{background:linear-gradient(135deg,var(--light),var(--gold));color:#111}
-label{display:block;margin:14px 0 7px;font-size:14px;color:#eee}
-input,select{width:100%;padding:13px;border:1px solid #555;border-radius:8px;background:#0e0e0e;color:#fff;font:inherit}
-.submit{width:100%;margin-top:22px;font-size:16px}
-.note{font-size:13px;line-height:1.8;color:#ccc}
-#message{display:none;margin-top:16px;padding:12px;border-radius:8px;line-height:1.8;white-space:pre-wrap}
-#message.error{display:block;background:#421c1c;color:#ffdede}
-#message.success{display:block;background:#17351f;color:#d9ffe1}
-.back{display:block;text-align:center;color:var(--light);margin-top:18px;text-decoration:none}
-.hidden{display:none!important}
-</style>
-</head>
-<body>
-<main>
-  <header class="brand">
-    <h1>ابني ابنك</h1>
-    <p>في اللغة العربية — الأستاذ يوسف محمد السيد</p>
-  </header>
-  <section class="card">
-    <div class="tabs">
-      <button class="tab active" id="loginTab" type="button">دخول طالب</button>
-      <button class="tab" id="registerTab" type="button">حساب جديد</button>
-    </div>
-    <form id="authForm">
-      <div id="nameGroup" class="hidden">
-        <label for="studentName">اسم الطالب بالكامل</label>
-        <input id="studentName" name="name" autocomplete="name" minlength="3" maxlength="100">
-      </div>
-      <div id="gradeGroup" class="hidden">
-        <label for="grade">الصف الدراسي</label>
-        <select id="grade" name="grade">
-          <option value="">اختر الصف الدراسي</option>
-          <option>الصف الأول الابتدائي</option>
-          <option>الصف الثاني الابتدائي</option>
-          <option>الصف الثالث الابتدائي</option>
-          <option>الصف الرابع الابتدائي</option>
-          <option>الصف الخامس الابتدائي</option>
-          <option>الصف السادس الابتدائي</option>
-          <option>الصف الأول الإعدادي</option>
-          <option>الصف الثاني الإعدادي</option>
-          <option>الصف الثالث الإعدادي</option>
-        </select>
-      </div>
-      <label for="phone">رقم الموبايل المصري</label>
-      <input id="phone" name="phone" type="tel" inputmode="tel" autocomplete="tel" placeholder="01012345678" required>
-      <label for="password">كلمة المرور (8 أحرف على الأقل)</label>
-      <input id="password" name="password" type="password" minlength="8" maxlength="72" autocomplete="current-password" required>
-      <button class="submit" id="submitButton" type="submit">تسجيل الدخول</button>
-    </form>
-    <div id="message" role="status" aria-live="polite"></div>
-    <p class="note">ملاحظة: التسجيل برقم الموبايل وكلمة المرور فقط، ولا يتم إرسال رسالة SMS. لذلك لا يُعد رقم الموبايل مُتحققًا من ملكيته.</p>
-  </section>
-  <a class="back" href="./index.html">العودة إلى الصفحة الرئيسية</a>
-</main>
+:root{--gold:#d9ad42;--light:#f5d783;--black:#080808;--panel:#171717}*{box-sizing:border-box}body{margin:0;min-height:100vh;background:var(--black);color:#fff;font-family:Tahoma,Arial,sans-serif;display:flex;align-items:center;justify-content:center;padding:20px}main{width:min(100%,520px)}.brand{text-align:center;margin-bottom:22px}.brand h1{color:var(--gold);margin:0 0 8px;font-size:32px}.brand p{margin:0;color:#ddd}.card{background:var(--panel);border:1px solid #514321;border-radius:16px;padding:24px;box-shadow:0 12px 35px #0008}.tabs{display:flex;gap:10px;margin-bottom:22px}button,.tab{font-family:inherit;cursor:pointer;border:0;border-radius:9px;padding:12px 16px;font-weight:bold}.tab{flex:1;background:#292929;color:#fff}.tab.active,.submit{background:linear-gradient(135deg,var(--light),var(--gold));color:#111}label{display:block;margin:14px 0 7px;font-size:14px;color:#eee}input,select{width:100%;padding:13px;border:1px solid #555;border-radius:8px;background:#0e0e0e;color:#fff;font:inherit}.submit{width:100%;margin-top:22px;font-size:16px}.note{font-size:13px;line-height:1.8;color:#ccc}#message{display:none;margin-top:16px;padding:12px;border-radius:8px;line-height:1.8;white-space:pre-wrap}#message.error{display:block;background:#421c1c;color:#ffdede}#message.success{display:block;background:#17351f;color:#d9ffe1}.back{display:block;text-align:center;color:var(--light);margin-top:18px;text-decoration:none}.hidden{display:none!important}
+</style></head><body><main><header class="brand"><h1>ابني ابنك</h1><p>في اللغة العربية — الأستاذ يوسف محمد السيد</p></header>
+<section class="card"><div class="tabs"><button class="tab active" id="loginTab" type="button">دخول طالب</button><button class="tab" id="registerTab" type="button">حساب جديد</button></div>
+<form id="authForm"><div id="nameGroup" class="hidden"><label for="studentName">اسم الطالب بالكامل</label><input id="studentName" name="name" autocomplete="name" minlength="3" maxlength="100"></div>
+<div id="gradeGroup" class="hidden"><label for="grade">الصف الدراسي</label><select id="grade" name="grade"><option value="">اختر الصف الدراسي</option><option>الصف الأول الابتدائي</option><option>الصف الثاني الابتدائي</option><option>الصف الثالث الابتدائي</option><option>الصف الرابع الابتدائي</option><option>الصف الخامس الابتدائي</option><option>الصف السادس الابتدائي</option><option>الصف الأول الإعدادي</option><option>الصف الثاني الإعدادي</option><option>الصف الثالث الإعدادي</option></select></div>
+<label for="phone">رقم الموبايل المصري</label><input id="phone" name="phone" type="tel" inputmode="tel" autocomplete="tel" placeholder="01012345678" required>
+<label for="password">كلمة المرور (8 أحرف على الأقل)</label><input id="password" name="password" type="password" minlength="8" maxlength="72" autocomplete="current-password" required><button class="submit" id="submitButton" type="submit">تسجيل الدخول</button></form>
+<div id="message" role="status" aria-live="polite"></div><p class="note">ملاحظة: التسجيل برقم الموبايل وكلمة المرور فقط، ولا يتم إرسال رسالة SMS. لذلك لا يُعد رقم الموبايل مُتحققًا من ملكيته.</p></section><a class="back" href="./index.html">العودة إلى الصفحة الرئيسية</a></main>
 <script type="module">
 import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm';
-
-const SUPABASE_URL = 'https://yjcfbdwnqslmwlzhwlrr.supabase.co';
-const SUPABASE_KEY = 'sb_publishable_m9hvko23on9X9klL1e5KtA_G4OtOSWR';
-const FUNCTION_URL = `${SUPABASE_URL}/functions/v1/smooth-action`;
-const supabase = createClient(SUPABASE_URL, SUPABASE_KEY);
-
-let mode = 'login';
-const form = document.getElementById('authForm');
-const loginTab = document.getElementById('loginTab');
-const registerTab = document.getElementById('registerTab');
-const nameGroup = document.getElementById('nameGroup');
-const gradeGroup = document.getElementById('gradeGroup');
-const nameInput = document.getElementById('studentName');
-const gradeInput = document.getElementById('grade');
-const passwordInput = document.getElementById('password');
-const submitButton = document.getElementById('submitButton');
-const message = document.getElementById('message');
-
-function setMode(nextMode) {
-  mode = nextMode;
-  const registering = mode === 'register';
-  nameGroup.classList.toggle('hidden', !registering);
-  gradeGroup.classList.toggle('hidden', !registering);
-  nameInput.required = registering;
-  gradeInput.required = registering;
-  loginTab.classList.toggle('active', !registering);
-  registerTab.classList.toggle('active', registering);
-  submitButton.textContent = registering ? 'إنشاء حساب الطالب' : 'تسجيل الدخول';
-  passwordInput.autocomplete = registering ? 'new-password' : 'current-password';
-  message.className = '';
-  message.textContent = '';
+const SUPABASE_URL='https://yjcfbdwnqslmwlzhwlrr.supabase.co';
+const SUPABASE_KEY='sb_publishable_m9hvko23on9X9klL1e5KtA_G4OtOSWR';
+const FUNCTION_URL=`${SUPABASE_URL}/functions/v1/smooth-action`;
+const supabase=createClient(SUPABASE_URL,SUPABASE_KEY);
+let mode='login';
+const form=document.getElementById('authForm'),loginTab=document.getElementById('loginTab'),registerTab=document.getElementById('registerTab'),nameGroup=document.getElementById('nameGroup'),gradeGroup=document.getElementById('gradeGroup'),nameInput=document.getElementById('studentName'),gradeInput=document.getElementById('grade'),passwordInput=document.getElementById('password'),submitButton=document.getElementById('submitButton'),message=document.getElementById('message');
+function setMode(nextMode){mode=nextMode;const registering=mode==='register';nameGroup.classList.toggle('hidden',!registering);gradeGroup.classList.toggle('hidden',!registering);nameInput.required=registering;gradeInput.required=registering;loginTab.classList.toggle('active',!registering);registerTab.classList.toggle('active',registering);submitButton.textContent=registering?'إنشاء حساب الطالب':'تسجيل الدخول';passwordInput.autocomplete=registering?'new-password':'current-password';message.className='';message.textContent=''}
+loginTab.addEventListener('click',()=>setMode('login'));registerTab.addEventListener('click',()=>setMode('register'));
+function showMessage(text,kind){message.textContent=text;message.className=kind}
+form.addEventListener('submit',async(event)=>{event.preventDefault();message.className='';message.textContent='';submitButton.disabled=true;submitButton.textContent='جارٍ التنفيذ...';
+const payload={action:mode,phone:document.getElementById('phone').value.trim().replace(/[\s()-]/g,''),password:passwordInput.value};
+if(mode==='register'){payload.name=nameInput.value.trim();payload.grade=gradeInput.value}
+try{
+const response=await fetch(FUNCTION_URL,{method:'POST',headers:{'Content-Type':'application/json','apikey':SUPABASE_KEY},body:JSON.stringify(payload)});
+const result=await response.json().catch(()=>({}));
+if(!response.ok)throw new Error(result.error||result.message||`تعذر إكمال الطلب (رمز ${response.status}).`);
+if(result.session?.access_token&&result.session?.refresh_token){
+const {error}=await supabase.auth.setSession({access_token:result.session.access_token,refresh_token:result.session.refresh_token});
+if(error)throw new Error('تمت العملية لكن تعذر حفظ جلسة الدخول. حاول تسجيل الدخول مرة أخرى.');
+window.location.replace('./student-dashboard.html');return;
 }
-loginTab.addEventListener('click', () => setMode('login'));
-registerTab.addEventListener('click', () => setMode('register'));
-
-function showMessage(text, kind) {
-  message.textContent = text;
-  message.className = kind;
-}
-function normalizePhone(phone) {
-  return phone.trim().replace(/[\s()-]/g, '');
-}
-
-form.addEventListener('submit', async (event) => {
-  event.preventDefault();
-  message.className = '';
-  message.textContent = '';
-  submitButton.disabled = true;
-  submitButton.textContent = 'جارٍ التنفيذ...';
-
-  const payload = {
-    action: mode,
-    phone: normalizePhone(document.getElementById('phone').value),
-    password: passwordInput.value
-  };
-  if (mode === 'register') {
-    payload.name = nameInput.value.trim();
-    payload.grade = gradeInput.value;
-  }
-
-  try {
-    const response = await fetch(FUNCTION_URL, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'apikey': SUPABASE_KEY
-      },
-      body: JSON.stringify(payload)
-    });
-    const result = await response.json().catch(() => ({}));
-
-    if (!response.ok) {
-      throw new Error(result.error || result.message || `تعذر إكمال الطلب (رمز ${response.status}).`);
-    }
-
-    if (result.session?.access_token && result.session?.refresh_token) {
-      const { error } = await supabase.auth.setSession({
-        access_token: result.session.access_token,
-        refresh_token: result.session.refresh_token
-      });
-      if (error) throw new Error('تمت العملية لكن تعذر حفظ جلسة الدخول. حاول تسجيل الدخول مرة أخرى.');
-    }
-
-    if (result.session?.access_token) {
-      showMessage(mode === 'register' ? 'تم إنشاء الحساب وتسجيل الدخول بنجاح.' : 'تم تسجيل الدخول بنجاح.', 'success');
-      // مؤقتًا نعرض نجاح الدخول؛ لا نوجّه الطالب إلى محتوى غير محمي.
-    } else {
-      showMessage(result.message || 'تمت العملية. يمكنك تسجيل الدخول الآن.', 'success');
-      if (mode === 'register') setMode('login');
-    }
-  } catch (error) {
-    showMessage(error.message || 'تعذر الاتصال بالخادم. تأكد من الإنترنت وحاول مرة أخرى.', 'error');
-  } finally {
-    submitButton.disabled = false;
-    submitButton.textContent = mode === 'register' ? 'إنشاء حساب الطالب' : 'تسجيل الدخول';
-  }
+showMessage(result.message||'تم إنشاء الحساب. سجل الدخول الآن.','success');if(mode==='register')setMode('login');
+}catch(error){showMessage(error.message||'تعذر الاتصال بالخادم. تأكد من الإنترنت وحاول مرة أخرى.','error')}
+finally{submitButton.disabled=false;submitButton.textContent=mode==='register'?'إنشاء حساب الطالب':'تسجيل الدخول'}
 });
-</script>
-</body>
-</html>
+</script></body></html>
